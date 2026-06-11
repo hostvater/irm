@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRM – Prognose 2026–2027 · Executive summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --irm-red:#E1241E;
+    --irm-red-dark:#B81912;
+    --irm-tint:#F6DCD8;
+    --irm-tint-2:#FBEDEB;
+    --paper:#EDEBE4;
+    --card:#FFFFFF;
+    --ink:#1A1A1A;
+    --ink-soft:#4A4844;
+    --line:#D8D5CC;
+    --pos:#1E7A4D;
+    --neg:#C0392B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo','Helvetica Neue',Arial,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Logo ---------- */
+  .logo{display:flex;align-items:center;gap:14px;}
+  .logo .mark{display:grid;grid-template-columns:repeat(11,5px);grid-template-rows:repeat(5,5px);gap:1.5px;}
+  .logo .mark span{background:var(--irm-red);border-radius:1px;}
+  .logo .mark span.off{background:transparent;}
+  .logo .name{font-family:'Archivo',sans-serif;font-weight:800;font-size:12px;line-height:1.12;letter-spacing:.04em;color:var(--irm-red);text-transform:uppercase;}
+
+  /* ---------- Topbar ---------- */
+  .topbar{border-bottom:1px solid var(--line);}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px;}
+  .topbar .tag{font-family:'Archivo Narrow',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* ---------- Hero ---------- */
+  .hero{background:linear-gradient(135deg,var(--irm-tint) 0%,var(--irm-tint-2) 100%);}
+  .hero .wrap{padding:54px 24px 48px;}
+  .hero .kicker{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--irm-red);margin:0 0 18px;}
+  .hero h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(30px,5.2vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0;max-width:18ch;}
+  .hero .lede{font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:62ch;margin:22px 0 0;}
+  .hero .meta{margin-top:28px;font-family:'Archivo Narrow',sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .hero .meta strong{color:var(--ink);}
+
+  /* ---------- Headline stats ---------- */
+  .stats{margin-top:-34px;margin-bottom:8px;}
+  .stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;box-shadow:0 8px 24px rgba(40,30,20,.05);}
+  .stat .big{font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;line-height:1;letter-spacing:-.02em;color:var(--irm-red);}
+  .stat .lbl{margin-top:10px;font-size:13.5px;line-height:1.4;color:var(--ink-soft);}
+  .stat .sub{margin-top:6px;font-family:'Archivo Narrow',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#9A958B;}
+
+  /* ---------- Sections ---------- */
+  section{padding:30px 0;}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;}
+  .section-head .no{font-family:'Archivo',sans-serif;font-weight:900;font-size:15px;color:var(--irm-red);min-width:34px;}
+  .section-head h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.01em;margin:0;}
+  p.body{margin:0 0 14px;max-width:74ch;color:#2A2824;}
+  p.body:last-child{margin-bottom:0;}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+
+  /* ---------- Channel table ---------- */
+  .chan{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  thead th{font-family:'Archivo Narrow',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--ink-soft);text-align:left;padding:13px 18px;background:#F4F2EC;border-bottom:1px solid var(--line);}
+  thead th.num{text-align:right;}
+  tbody td{padding:12px 18px;border-bottom:1px solid #EFEDE6;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr.total td{background:#FBF4F3;font-weight:700;}
+  td.ch{font-weight:600;}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .pct{font-family:'Archivo',sans-serif;font-weight:700;font-variant-numeric:tabular-nums;}
+  .pct.up{color:var(--pos);}
+  .pct.dn{color:var(--neg);}
+  .muted{color:#9A958B;font-size:12.5px;}
+
+  /* ---------- Takeaways ---------- */
+  .takeaways{background:var(--ink);color:#F3F1EA;border-radius:16px;padding:34px 32px;}
+  .takeaways h2{color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;margin:0 0 6px;}
+  .takeaways .sub{color:#B9B4A9;font-family:'Archivo Narrow',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 22px;}
+  .takeaways .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .take{border-left:3px solid var(--irm-red);padding-left:16px;}
+  .take h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;margin:0 0 6px;color:#fff;}
+  .take p{margin:0;font-size:14px;line-height:1.55;color:#CFCABF;}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);margin-top:40px;}
+  footer .wrap{padding:26px 24px 46px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  footer .fnote{font-family:'Archivo Narrow',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);max-width:58ch;}
+
+  @media(max-width:860px){
+    .stats .grid{grid-template-columns:repeat(2,1fr);}
+    .twocol{grid-template-columns:1fr;gap:22px;}
+    .takeaways .grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:520px){
+    .stats .grid{grid-template-columns:1fr;}
+    .topbar .tag{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="logo">
+      <div class="mark" aria-hidden="true" id="mark"></div>
+      <div class="name">Institutet för<br>reklam- och<br>mediestatistik</div>
+    </div>
+    <div class="tag">Prognose · Norge · 2026–2027</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">Executive summary</p>
+    <h1>Annonsemarkedet når 30 milliarder kroner i 2026</h1>
+    <p class="lede">Det norske annonsemarkedet avsluttet året med god utvikling, og den positive trenden ventes å fortsette gjennom 2026. Samlet sett forventes en vekst på 4,4 %, noe som innebærer at annonsemarkedet for første gang passerer 30 milliarder kroner i løpet av året.</p>
+    <p class="meta">IRM-prognose &nbsp;·&nbsp; <strong>Samlet vekst 2026: +4,4 %</strong> &nbsp;·&nbsp; Mindre nedjustering siden forrige prognose</p>
+  </div>
+</div>
+
+<!-- HEADLINE STATS -->
+<div class="stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat">
+        <div class="big">+4,4 %</div>
+        <div class="lbl">Samlet vekst i annonsemarkedet 2026</div>
+        <div class="sub">Passerer 30 mrd. kr</div>
+      </div>
+      <div class="stat">
+        <div class="big">77 %</div>
+        <div class="lbl">Internett sin andel av totale annonseinvesteringer</div>
+        <div class="sub">Digitalt +6,9 %</div>
+      </div>
+      <div class="stat">
+        <div class="big">+7,6 %</div>
+        <div class="lbl">Out-of-home – sterkest voksende kanal</div>
+        <div class="sub">62 % digitalt</div>
+      </div>
+      <div class="stat">
+        <div class="big">~1,5 %</div>
+        <div class="lbl">Forventet vekst i fastlands-BNP 2026</div>
+        <div class="sub">Drevet av husholdningenes konsum</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- OVERVIEW -->
+  <section>
+    <div class="section-head"><span class="no">01</span><h2>Et marked drevet av digital vekst</h2></div>
+    <div class="twocol">
+      <div>
+        <p class="body">De digitale annonseinvesteringene forventes å fortsette å drive veksten i annonsemarkedet. Samlet ventes internett å utgjøre nesten 77 % av de totale annonseinvesteringene i 2026, med en digital vekst på 6,9 %.</p>
+        <p class="body">Den sterke videotrenden fra fjoråret forventes å gi fortsatt positiv effekt, der både sosial video og strømmet TV innen total TV ventes å vokse kraftig.</p>
+      </div>
+      <div>
+        <p class="body">IRM har gjort en mindre nedjustering sammenlignet med forrige prognose, hovedsakelig for utviklingen i årets første kvartal, der flere kategorier indikerer en noe tregere start på året.</p>
+        <p class="body">Avisenes samlede inntekter stabiliserte seg i fjor, og for 2026 ventes en marginal nedgang. Digitale annonseinntekter forventes å utgjøre 82 % av avisenes totale inntekter, slik at fallet i papir får stadig mindre betydning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS TABLE -->
+  <section>
+    <div class="section-head"><span class="no">02</span><h2>Vekst per mediekanal</h2></div>
+    <div class="chan">
+      <table>
+        <thead>
+          <tr>
+            <th>Kanal</th>
+            <th class="num">Vekst 2026</th>
+            <th class="num">Omsetning 2026</th>
+            <th>Kommentar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ch">Internett</td>
+            <td class="num"><span class="pct up">+6,9 %</span></td>
+            <td class="num">23,2 mrd. kr</td>
+            <td class="muted">Søk +5,5 % (7,8 mrd.), rubrikk +6,0 % (3,2 mrd.)</td>
+          </tr>
+          <tr>
+            <td class="ch">– herav display</td>
+            <td class="num"><span class="pct up">+6,7 %</span></td>
+            <td class="num">&gt;11 mrd. kr</td>
+            <td class="muted">Sosiale nettverk 6,3 mrd. (+9,3 %), sosial video +13,5 %</td>
+          </tr>
+          <tr>
+            <td class="ch">Levende bilder</td>
+            <td class="num"><span class="pct up">+3,2 %</span></td>
+            <td class="num">5,3 mrd. kr</td>
+            <td class="muted">Total TV +2,5 % (≈4,0 mrd.), online video +6,0 % (1 mrd.)</td>
+          </tr>
+          <tr>
+            <td class="ch">Out-of-home (OOH)</td>
+            <td class="num"><span class="pct up">+7,6 %</span></td>
+            <td class="num">1 225 mill. kr</td>
+            <td class="muted">Digital OOH +10,7 % (758 mill.), 62 % digitalt</td>
+          </tr>
+          <tr>
+            <td class="ch">Lydmedier</td>
+            <td class="num"><span class="pct up">+4,3 %</span></td>
+            <td class="num">~0,9 mrd. kr</td>
+            <td class="muted">Radio 778 mill. (+2,9 %), podkast +13,5 % (128 mill.)</td>
+          </tr>
+          <tr>
+            <td class="ch">Aviser</td>
+            <td class="num"><span class="pct dn">−0,7 %</span></td>
+            <td class="num">~3,9 mrd. kr</td>
+            <td class="muted">Digitalt +3,2 %, papir −15,1 % (715 mill.)</td>
+          </tr>
+          <tr>
+            <td class="ch">Fagpresse</td>
+            <td class="num"><span class="pct dn">−2,5 %</span></td>
+            <td class="num">444 mill. kr</td>
+            <td class="muted">Papir −4,1 %, digitalt −0,3 %</td>
+          </tr>
+          <tr>
+            <td class="ch">Ukepresse</td>
+            <td class="num"><span class="pct dn">−4,8 %</span></td>
+            <td class="num">172 mill. kr</td>
+            <td class="muted">Nedgang i både papir og digitalt</td>
+          </tr>
+          <tr>
+            <td class="ch">Direktereklame</td>
+            <td class="num"><span class="pct dn">−9,9 %</span></td>
+            <td class="num">602 mill. kr</td>
+            <td class="muted">Adressert −12,9 %, uadressert −7,7 %</td>
+          </tr>
+          <tr class="total">
+            <td class="ch">Annonsemarkedet samlet</td>
+            <td class="num"><span class="pct up">+4,4 %</span></td>
+            <td class="num">&gt;30 mrd. kr</td>
+            <td class="muted">Første gang over 30 milliarder kroner</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body" style="margin-top:14px;font-size:13px;color:#9A958B;">Trendene fra fjoråret forventes å fortsette: kategorier med positiv utvikling i fjor ventes å vokse også i 2026. Eneste unntak er aviser, som ventes å vise en marginal nedgang.</p>
+  </section>
+
+  <!-- MACRO -->
+  <section>
+    <div class="section-head"><span class="no">03</span><h2>Makrobildet: stabil økonomi, vedvarende inflasjon</h2></div>
+    <div class="twocol">
+      <div>
+        <p class="body">Norsk fastlands-BNP gikk tilbake til en mer stabil vekst i fjor på 1,6 %. Inngangen til 2026 er forholdsvis god, med lav arbeidsledighet og en sterk trend i husholdningenes konsum.</p>
+        <p class="body">BNP-utviklingen i 2026 ventes å bli nær fjorårets nivå, med en vekst på rundt 1,5 %. Den største drivkraften er husholdningenes konsum, der økt disponibel inntekt forventes å sette tydelige spor.</p>
+      </div>
+      <div>
+        <p class="body">En urovekkende faktor er den vedvarende inflasjonen, som fortsatt ligger over målet. Prisveksten kan nå i hovedsak forklares av en sterk lønnsutvikling snarere enn importerte priser og svak krone.</p>
+        <p class="body">Høyere inflasjonstall enn ventet i starten av året begrenser Norges Banks handlingsrom til å sette ned styringsrenten. Fortsatt vekst i økonomien og konsumet ventes likevel å understøtte annonsemarkedet gjennom 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKEAWAYS -->
+  <section>
+    <div class="takeaways">
+      <h2>Spaninger inn mot 2026</h2>
+      <p class="sub">Fire ting å følge med på</p>
+      <div class="grid">
+        <div class="take">
+          <h3>Norge leder annonseligaen etter covid</h3>
+          <p>De siste årene har det norske annonsemarkedet hatt den sterkeste utviklingen blant de nordiske landene.</p>
+        </div>
+        <div class="take">
+          <h3>Korrelerer med Nordens sterkeste konsum</h3>
+          <p>Husholdningenes konsum har vært godt sammenlignet med de øvrige nordiske landene, og fortsatt vekst ventes å understøtte annonsemarkedet.</p>
+        </div>
+        <div class="take">
+          <h3>Stabilisering for aviser</h3>
+          <p>Etter to år med fallende inntekter snudde utviklingen i fjor. Digitale inntekter (82 % av totalen) demper effekten av papirfallet.</p>
+        </div>
+        <div class="take">
+          <h3>AI utfordrer</h3>
+          <p>Kunstig intelligens er en strukturell faktor som utfordrer mediemarkedet og måten annonseinvesteringer fordeles på.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="logo">
+      <div class="mark" aria-hidden="true" id="mark2"></div>
+      <div class="name">Institutet för<br>reklam- och<br>mediestatistik</div>
+    </div>
+    <div class="fnote">Kilde: IRM – Prognose 2026–2027 for det norske annonsemarkedet. Alle tall er IRMs prognoser. Sammendrag utarbeidet for intern bruk; ved avvik gjelder den fullstendige rapporten.</div>
+  </div>
+</footer>
+
+<script>
+  // Build the blocky "irm" pixel wordmark (11x5 grid)
+  // i = col0 ; r = cols 2-4 ; m = cols 6-10
+  const on = [
+    // row0
+    [0, 2,3,4, 6,7,8,9,10],
+    // row1
+    [0, 2,    6,   8,    10],
+    // row2
+    [0, 2,3,4, 6,   8,    10],
+    // row3
+    [0, 2,    6,   8,    10],
+    // row4
+    [0, 2,    6,   8,    10]
+  ];
+  function build(el){
+    if(!el) return;
+    for(let r=0;r<5;r++){
+      for(let c=0;c<11;c++){
+        const s=document.createElement('span');
+        if(!on[r].includes(c)) s.className='off';
+        el.appendChild(s);
+      }
+    }
+  }
+  build(document.getElementById('mark'));
+  build(document.getElementById('mark2'));
+</script>
+
+</body>
+</html>
